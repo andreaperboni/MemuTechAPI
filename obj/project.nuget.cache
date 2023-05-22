@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "dgSpecHash": "y04rhL2YaNEBDkd9YFzI4h64hG9CFYYZuEtNS8tbzsZsipvRndc9l2mgWsbrp9evGGcWlGlSRSdDCyD8yVbMMA==",
+  "success": false,
+  "projectFilePath": "Z:\\MyRepos\\MemuTechAPI\\MemuTechAPI.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://nuget.twsfi.local/nuget'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Non è possibile caricare l'indice del servizio per l'origine https://devops.codearchitects.com:444/Code%20Architects/_packaging/ca-esp7-nuget/nuget/v3/index.json.",
+      "libraryId": "Microsoft.AspNetCore.OpenApi"
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Non è possibile caricare l'indice del servizio per l'origine https://devops.codearchitects.com:444/Code%20Architects/_packaging/ca-esp7-nuget/nuget/v3/index.json.",
+      "libraryId": "Swashbuckle.AspNetCore"
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Non è possibile caricare l'indice del servizio per l'origine https://devops.codearchitects.com:444/Code%20Architects/_packaging/ca-esp7-nuget/nuget/v3/index.json.",
+      "libraryId": "Microsoft.AspNetCore.OpenApi"
+    }
+  ]
+}
