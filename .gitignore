@@ -396,3 +396,16 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+data/Memu.db
+obj/Debug/net7.0/MemuTechAPI.assets.cache
+obj/project.nuget.cache
+obj/project.assets.json
+obj/MemuTechAPI.csproj.nuget.g.targets
+obj/MemuTechAPI.csproj.nuget.g.props
+obj/MemuTechAPI.csproj.nuget.dgspec.json
+.gitignore
+data/Memu.db-wal
+data/Memu.db-shm
+data/Memuprova.edb-journal
+obj/MemuTechAPI.csproj.nuget.dgspec.json
+obj/MemuTechAPI.csproj.nuget.g.props
