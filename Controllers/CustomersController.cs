@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using MemuTechAPI.Models.Infrastructure;
-using System.Data;
 using Microsoft.Data.Sqlite;
 using Dapper;
 
@@ -21,7 +19,7 @@ public class CustomersController : ControllerBase
     {
         using (var cl = new SqliteConnection(@"Data Source=.\data\Memu.db"))
         {
-            string query = "SELECT Id, Uuid, Tipo, Codice, Titolo, RagioneSociale FROM EB_ClientiFornitori";
+            string query = "SELECT Id, Codice as CodClient, RagioneSociale as NomeClient, 'Verona' as LocClient, '045123456' as TelClient, 0 as DisactiveClient FROM EB_ClientiFornitori LIMIT 100";
             var customers = cl.Query<Customer>(query).ToList();
             return customers;
         }        
@@ -33,8 +31,10 @@ public class CustomersController : ControllerBase
         int newCustomers = 0;
         using (var cl = new SqliteConnection(@"Data Source=.\data\Memu.db")) 
         {
-            string query = "INSERT INTO EB_ClientiFornitori VALUES (@Id, @Uuid, @Tipo, @Codice, @Titolo, @RagioneSociale)";
-            newCustomers = cl.Execute(query);
+            //var parameters = new SqliteParameterCollection();
+            //parameters.Add(new SqliteParameter("Id",customer.Id));
+            //string query = "INSERT INTO EB_ClientiFornitori VALUES (@Id, @CodClient, @NomeClient, @LocClient, @TelClient, 0)";
+            //newCustomers = cl.Execute(query, parameters);
         }
         return newCustomers;
     }
@@ -45,8 +45,8 @@ public class CustomersController : ControllerBase
         int updCustomers = 0;
         using (var cl = new SqliteConnection(@"Data Source=.\data\Memu.db"))
         {
-            string query = "UPDATE Tipo=@Tipo, Codice=@Codice, Titolo=@Titolo, RagioneSociale=@RagioneSociale FROM EB_ClientiFornitori WHERE (Id = @Id)";
-            updCustomers = cl.Execute(query);
+            //string query = "UPDATE Tipo=@Tipo, Codice=@Codice, Titolo=@Titolo, RagioneSociale=@RagioneSociale FROM EB_ClientiFornitori WHERE (Id = @Id)";
+            //updCustomers = cl.Execute(query);
         }
         return updCustomers;
     }
