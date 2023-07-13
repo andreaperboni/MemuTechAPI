@@ -17,11 +17,22 @@ public class CustomersController : ControllerBase
     [HttpGet]
     public IEnumerable<Customer> GetCustomers()
     {
-        using (var cl = new SqliteConnection(@"Data Source=.\data\Memu.db"))
+        using (var cl = new SqliteConnection(@"Data Source=./data/Memu.db"))
         {
-            string query = "SELECT Id, Codice as CodClient, RagioneSociale as NomeClient, 'Verona' as LocClient, '045123456' as TelClient, 0 as DisactiveClient FROM EB_ClientiFornitori LIMIT 100";
+            string query = "SELECT Id, Codice as CodClient, RagioneSociale as NomeClient, 'Verona' as LocClient, '045123456' as TelClient, 0 as DisactiveClient FROM EB_ClientiFornitori";
             var customers = cl.Query<Customer>(query).ToList();
             return customers;
+        }        
+    }
+
+    [HttpGet("{id}")]
+    public Customer GetCustomer(string id)
+    {
+        using (var cl = new SqliteConnection(@"Data Source=./data/Memu.db"))
+        {
+            string query = "SELECT Id, Codice as CodClient, RagioneSociale as NomeClient, 'Verona' as LocClient, '045123456' as TelClient, 0 as DisactiveClient FROM EB_ClientiFornitori WHERE Codice = '" + id + "'";
+            var customer = cl.Query<Customer>(query).SingleOrDefault();
+            return customer;
         }        
     }
 
