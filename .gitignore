@@ -409,3 +409,4 @@ data/Memu.db-shm
 data/Memuprova.edb-journal
 obj/MemuTechAPI.csproj.nuget.dgspec.json
 obj/MemuTechAPI.csproj.nuget.g.props
+obj/project.assets.json
