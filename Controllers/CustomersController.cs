@@ -19,7 +19,7 @@ public class CustomersController : ControllerBase
     {
         using (var cl = new SqliteConnection(@"Data Source=./data/Memu.db"))
         {
-            string query = "SELECT Id, Codice as CodClient, RagioneSociale as NomeClient, 'Verona' as LocClient, '045123456' as TelClient, 0 as DisactiveClient FROM EB_ClientiFornitori";
+            string query = "SELECT Id, Codice as CodClient, RagioneSociale as NomeClient, Localita as LocClient, PartitaIVA as TelClient, 0 as DisactiveClient FROM EB_ClientiFornitori";
             var customers = cl.Query<Customer>(query).ToList();
             return customers;
         }        
@@ -30,34 +30,38 @@ public class CustomersController : ControllerBase
     {
         using (var cl = new SqliteConnection(@"Data Source=./data/Memu.db"))
         {
-            string query = "SELECT Id, Codice as CodClient, RagioneSociale as NomeClient, 'Verona' as LocClient, '045123456' as TelClient, 0 as DisactiveClient FROM EB_ClientiFornitori WHERE Codice = '" + id + "'";
+            string query = "SELECT Id, Codice as CodClient, RagioneSociale as NomeClient, Localita as LocClient, PartitaIVA as TelClient, 0 as DisactiveClient FROM EB_ClientiFornitori WHERE Codice = '" + id + "'";
             var customer = cl.Query<Customer>(query).SingleOrDefault();
             return customer;
         }        
     }
 
     [HttpPost]
-    public int PostCustomers(Customer customer)
+    public string PostCustomers(Customer customer)
     {
-        int newCustomers = 0;
-        using (var cl = new SqliteConnection(@"Data Source=.\data\Memu.db")) 
+        var newCustomers = 0;
+        using (var cl = new SqliteConnection(@"Data Source=./data/Memu.db")) 
         {
             //var parameters = new SqliteParameterCollection();
             //parameters.Add(new SqliteParameter("Id",customer.Id));
-            //string query = "INSERT INTO EB_ClientiFornitori VALUES (@Id, @CodClient, @NomeClient, @LocClient, @TelClient, 0)";
-            //newCustomers = cl.Execute(query, parameters);
+            //parameters.Add(new SqliteParameter("CodClient",customer.CodClient));
+            //parameters.Add(new SqliteParameter("NomeClient",customer.NomeClient));
+            //parameters.Add(new SqliteParameter("LocClient",customer.LocClient));
+            //parameters.Add(new SqliteParameter("TelClient",customer.TelClient));
+            //string query = $"INSERT INTO [EB_ClientiFornitori] (Codice, RagioneSociale, Localita, PartitaIVA) VALUES ('{customer.CodClient}', '{customer.NomeClient}', '{customer.LocClient}', '{customer.TelClient}')";
+            //newCustomers = cl.Execute(query);
         }
-        return newCustomers;
+        return $"Oggetto ottenuto: Codice: {customer.CodClient}, RagioneSociale: {customer.NomeClient}, Località: {customer.LocClient}."; //newCustomers;
     }
 
-    [HttpPut]
-    public int PutCustomers(Customer customer)
+    [HttpPut("{id}")]
+    public int PutCustomers(string id, Customer customer)
     {
-        int updCustomers = 0;
-        using (var cl = new SqliteConnection(@"Data Source=.\data\Memu.db"))
+        var updCustomers = 0;
+        using (var cl = new SqliteConnection(@"Data Source=./data/Memu.db"))
         {
-            //string query = "UPDATE Tipo=@Tipo, Codice=@Codice, Titolo=@Titolo, RagioneSociale=@RagioneSociale FROM EB_ClientiFornitori WHERE (Id = @Id)";
-            //updCustomers = cl.Execute(query);
+            string query = $"UPDATE [EB_ClientiFornitori] SET RagioneSociale='{customer.NomeClient}', Localita='{customer.LocClient}' WHERE Codice='{id}'";
+            updCustomers = cl.Execute(query);
         }
         return updCustomers;
     }
