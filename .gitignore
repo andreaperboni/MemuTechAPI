@@ -410,3 +410,10 @@ data/Memuprova.edb-journal
 obj/MemuTechAPI.csproj.nuget.dgspec.json
 obj/MemuTechAPI.csproj.nuget.g.props
 obj/project.assets.json
+.DS_Store
+.gitignore
+obj/MemuTechAPI.csproj.nuget.g.props
+.gitignore
+obj/project.assets.json
+.gitignore
+obj/Debug/net7.0/MemuTechAPI.assets.cache
